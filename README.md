@@ -23,4 +23,4 @@ cmake --build build/
 ./build/avl_tree
 ```
 
-[graphviz]: webgraphviz.com
+[graphviz]: http://www.webgraphviz.com/
