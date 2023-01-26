@@ -113,12 +113,12 @@ void AVLTree::visualize_tree(const string &outputFilename) {
   
   outFS << "digraph G {" << endl;
   // output the nodes 
-  outFS << "// nodes:" << endl;
+  outFS << "  // nodes:" << endl;
   if(this->tree_root != nullptr) {
     this->visualize_nodes(outFS,this->tree_root);
   }
   // output the edges 
-  outFS << "// edges:" << endl;
+  outFS << "  // edges:" << endl;
   if(this->tree_root != nullptr) {
     this->visualize_tree(outFS,this->tree_root);
   }  
@@ -353,6 +353,7 @@ void AVLTree::visualize_tree(ofstream &outFS, Node* node) {
   if(node->get_l_child()) {
     visualize_tree( outFS, node->get_l_child() );
     outFS 
+      << "  "
       << node->get_node_ID() << " -> " 
       << node->get_l_child()->get_node_ID() 
       << ";" << endl
@@ -362,6 +363,7 @@ void AVLTree::visualize_tree(ofstream &outFS, Node* node) {
   if(node->get_r_child()) {
     visualize_tree( outFS, node->get_r_child() );
     outFS 
+      << "  "
       << node->get_node_ID() << " -> " 
       << node->get_r_child()->get_node_ID() 
       << ";" << endl
@@ -377,9 +379,9 @@ void AVLTree::visualize_nodes(ofstream &outputfile, Node* node) {
   visualize_nodes(outputfile, node->get_l_child());
   visualize_nodes(outputfile, node->get_r_child());
   
-  outputfile << node->get_node_ID();  
+  outputfile << "  " << node->get_node_ID();  
   outputfile << " [shape=circle, color=lightblue, peripheries=2, style=filled, label=\""; 
-  outputfile << node->get_str() << "\n(" << this->balance_factor(node) << ")\"]" << endl; 
+  outputfile << node->get_str() << "\\n(" << this->balance_factor(node) << ")\"]" << endl; 
 }
 
 Node* AVLTree::search(Node* node, const string &str) {
