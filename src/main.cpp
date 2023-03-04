@@ -67,14 +67,23 @@ int main( ) {
       case 6:   /* Test for elapsed time to build the tree */
       {
         int num_nodes = 0;
+        int max_num_nodes = 500;
 
-        cout << "Enter the total number of nodes to insert to the AVL tree: ";
+        cout << "Enter the total number (0 to ";
+        cout << max_num_nodes;
+        cout << ") of nodes to insert to the AVL tree:  ";
         cin >> num_nodes;
         cin.clear();
         cin.ignore(256, '\n');
 
+        if(num_nodes > max_num_nodes ) {
+          num_nodes = max_num_nodes;
+          cout << "Inserting " << num_nodes << " nodes: " << endl;
+        }
+
         auto start = chrono::system_clock::now();
-        for(int i = 0; i < num_nodes ; i++) {
+        for(int i = 1; i <= num_nodes ; i++) {
+          cout << i << " ";
           tree.insert(to_string(i));
         } 
         auto end = chrono::system_clock::now();
