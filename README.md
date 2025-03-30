@@ -23,4 +23,11 @@ cmake --build build/
 ./build/avl_tree
 ```
 
+OR
+
+```c++
+// run with valgrind to check for memory leaks
+valgrind --leak-check=full ./build/avl_tree
+```
+
 [graphviz]: http://www.webgraphviz.com/

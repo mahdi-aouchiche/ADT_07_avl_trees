@@ -60,6 +60,11 @@ class AVLTree
   */
   void visualize_tree(const string &outputFilename);
 
+  /*
+    Delete the tree
+  */
+  void delete_tree();
+
   private:
   /*
     Helper function to the remove function
@@ -128,6 +133,12 @@ class AVLTree
     and balance the tree. 
   */
   void trickle_up_and_balance_tree(Node*);
+
+  /*
+    Delete a node
+    Helper function to delete the tree
+  */
+  void delete_node(Node* node);
 };
 
 #endif  // __AVL_TREE_HPP_

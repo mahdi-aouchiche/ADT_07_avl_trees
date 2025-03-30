@@ -228,6 +228,7 @@ bool AVLTree::remove_node(Node* node) {
 
   /* Delete the node */
   delete node;
+
   /* Propagate up the tree and balance the tree */ 
   this->trickle_up_and_balance_tree(node_to_balance);
   
@@ -410,4 +411,23 @@ void AVLTree::trickle_up_and_balance_tree(Node* node) {
     /* Output a file after rotation */   
     this->visualize_tree("./output_files/tree_after_rotation.dot");       
   }
+}
+
+void AVLTree::delete_tree() {
+  this->delete_node(this->tree_root);
+}
+
+void AVLTree::delete_node(Node* node){
+
+  if(!node) return;
+  
+  if( node->get_l_child() ) {
+    delete_node(node->get_l_child());
+  } 
+
+  if( node->get_r_child()) {
+    delete_node(node->get_r_child());
+  }
+
+  delete node;
 }

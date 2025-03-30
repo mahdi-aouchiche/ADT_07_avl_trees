@@ -67,7 +67,11 @@ int main( ) {
       case 6:   /* Test for elapsed time to build the tree */
       {
         int num_nodes = 0;
-        int max_num_nodes = 500;
+        int max_num_nodes = 200;
+
+        int minutes = 0;
+        double seconds = 0;
+        double total_time = 0;
 
         cout << "Enter the total number (0 to ";
         cout << max_num_nodes;
@@ -89,17 +93,26 @@ int main( ) {
         auto end = chrono::system_clock::now();
           
         chrono::duration<double> elapsed_seconds = end-start;
+
+        total_time = elapsed_seconds.count();
+        minutes = total_time / 60;
+        seconds = total_time - minutes; 
+
         cout 
           << "Elapsed time to build an AVL tree with " 
-          << num_nodes << " nodes = " << elapsed_seconds.count() 
-          << " seconds." << endl
+          << num_nodes << " nodes = "
+          << minutes << " minutes and " 
+          << seconds << " seconds." << endl
         ;
         break;
       } 
 
       case 7:   /* Quit */
       {
-        cout << "Exit!";
+        tree.delete_tree();
+        system(remove_existing_directory);
+
+        cout << "Exit!";        
         exit = true;
         break;
       }
@@ -121,9 +134,9 @@ int selection_menu() {
   int choice = 0;
   cout 
     << "Menu: "                             << endl
-    << "1. Insert a key."                   << endl
+    << "1. Insert a key (string)."          << endl
     << "2. Remove a key from the AVL tree." << endl
-    << "3. Search for a key."               << endl
+    << "3. Search for a key (string)."      << endl
     << "4. Print the AVL tree."             << endl
     << "5. Visualize the AVL tree."         << endl
     << "6. Test for elapsed time."          << endl
